@@ -8,6 +8,6 @@ public class CitasService {
     // Repositorios propios del servicio
     private CitasRepository citasRepository = new CitasRepository();
     public ArrayList<CitaTbl> getCitasByFecha(String fecha) throws Exception {
-        return citasRepository.getCitasByFecha(fecha);
+        return (ArrayList<CitaTbl>) citasRepository.getCitasByFecha(fecha);
     }
 }
