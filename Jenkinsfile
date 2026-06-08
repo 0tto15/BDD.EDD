@@ -1,6 +1,6 @@
 pipeline {
     agent any
-
+   
     stages {
         stage('Checkout') {
             steps {
@@ -12,33 +12,18 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Compilando y construyendo el proyecto...'
-               
-                sh 'echo "Construcción completada exitosamente"'
+                sh 'mvn clean compile'
             }
         }
 
         stage('Test') {
             steps {
                 echo 'Ejecutando pruebas unitarias...'
-           
-                sh 'echo "0 errores encontrados. Todas las pruebas pasaron."'
+                sh 'mvn test'
             }
         }
 
-        stage('Deploy') {
-            steps {
-                echo 'Desplegando el artefacto en el entorno simulado...'
-
-                sh '''
-                    echo "--- INICIANDO DESPLIEGUE AUTOMÁTICO ---"
-                    echo "Copiando archivos al directorio de producción..."
-                    echo "Despliegue finalizado correctamente."
-                '''
-            }
-        }
     }
-
-    post {
         success {
             echo '¡Felicidades! El pipeline se ha ejecutado correctamente y está en VERDE.'
         }
